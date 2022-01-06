@@ -11,8 +11,8 @@ There are not so much resource for Chinese Longformer or long-sequence-level chi
 您可以使用谷歌云盘或百度网盘下载我们的模型  
 You could get Longformer_zh from Google Drive or Baidu Yun.
 
-- Google Drive: https://drive.google.com/file/d/1h0oh6hmjc0w3n21VburjiZPJbChRSS4n/view?usp=sharing
-- 百度云:  链接：https://pan.baidu.com/s/1tgAOd7SuWxbwTRSagN0lyg 提取码：bdgb
+- Google Drive: https://drive.google.com/file/d/1IDJ4aVTfSFUQLIqCYBtoRpnfbgHPoxB4/view?usp=sharing
+- 百度云:  链接：https://pan.baidu.com/s/1HaVDENx52I7ryPFpnQmq1w 提取码：y601
 
 我们同样提供了Huggingface的自动下载  
 We also provide auto load with HuggingFace.Transformers.
@@ -22,6 +22,11 @@ LongformerZhForMaksedLM.from_pretrained('ValkyriaLenneth/longformer_zh')
 ```
 
 ## 注意事项 | Notice
+- 直接使用 `transformers.LongformerModel.from_pretrained` 加载模型
+- Please use `transformers.LongformerModel.from_pretrained` to load the model directly
+
+- 以下内容已经被弃用
+- The following notices are abondoned, please ignore them. 
 - 区别于英文原版Longformer， 中文Longformer的基础是Roberta_zh模型，其本质上属于 `Transformers.BertModel` 而非 `RobertaModel`, 因此无法使用原版代码直接加载。
 - Different with origin English Longformer, Longformer_Zh is based on Roberta_zh which is a subclass of `Transformers.BertModel` not `RobertaModel`. Thus it is impossible to load it with origin code.
 - 我们提供了修改后的中文Longformer文件，您可以使用其加载参数。
@@ -49,16 +54,11 @@ LongformerZhForMaksedLM.from_pretrained('ValkyriaLenneth/longformer_zh')
 - 更多细节可以参考我们的预训练脚本
 - For more details, please check our pretraining scripts.
 
-## 更新计划 | Update Plan
-- 我们首先会放出预训练3K-steps的模型
-- We released our 3K-steps pretrained model.
-- 在八月将开源训练15K-steps的模型
-- We will release our 15K-steps full pretrained model in August.
 
 ## 效果测试 | Evaluation
 ### CCF Sentiment Analysis
-- 由于中文超长文本级别任务稀缺，我们仅采用CCF-Sentiment-Analysis任务进行测试
-- Since it is hard to acquire open-sourced long sequence level chinese NLP task, we only use CCF-Sentiment-Analysis for evaluation. 
+- 由于中文超长文本级别任务稀缺，我们采用了CCF-Sentiment-Analysis任务进行测试
+- Since it is hard to acquire open-sourced long sequence level chinese NLP task, we use CCF-Sentiment-Analysis for evaluation. 
 
 |Model|Dev F|
 |----|----|
@@ -78,9 +78,24 @@ LongformerZhForMaksedLM.from_pretrained('ValkyriaLenneth/longformer_zh')
 |Longformer before training| 14.78|
 |Longformer after training| 3.10|
 
+### CMRC(Chinese Machine Reading Comprehension)
+|Model|F1|EM|
+|---|---|---|
+|Bert|85.87|64.90|
+|Roberta|86.45|66.57|
+|Longformer_zh|86.15|66.84|
+
+### Chinese Coreference Resolution
+|Model|Conll-F1|Precision|Recall|
+|---|---|---|---|
+|Bert|66.82|70.30|63.67|
+|Roberta|67.77|69.28|66.32|
+|Longformer_zh|67.81|70.13|65.64|
+
+
+
 ## 致谢
 感谢东京工业大学 奥村·船越研究室 提供算力。
 
 Thanks Okumula·Funakoshi Lab from Tokyo Institute of Technology who provides the devices and oppotunity for me to finish this project.
-
 
