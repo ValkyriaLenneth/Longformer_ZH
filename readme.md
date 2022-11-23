@@ -18,7 +18,7 @@ You could get Longformer_zh from Google Drive or Baidu Yun.
 We also provide auto load with HuggingFace.Transformers.
 ```
 from Longformer_zh import LongformerZhForMaksedLM
-LongformerZhForMaksedLM.from_pretrained('ValkyriaLenneth/longformer_zh')
+LongformerZhForMaskedLM.from_pretrained('ValkyriaLenneth/longformer_zh')
 ```
 
 ## 注意事项 | Notice
